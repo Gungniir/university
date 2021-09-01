@@ -1,8 +1,21 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "lab1", "lab1", "{6265EA6F-1C99-456A-A3A5-B34D8BE053BD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "lab1_task1", "lab1_task1\lab1_task1.csproj", "{E95BBBCC-BDF7-4D5C-8603-55E407B4318E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{E95BBBCC-BDF7-4D5C-8603-55E407B4318E} = {6265EA6F-1C99-456A-A3A5-B34D8BE053BD}
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{E95BBBCC-BDF7-4D5C-8603-55E407B4318E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E95BBBCC-BDF7-4D5C-8603-55E407B4318E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E95BBBCC-BDF7-4D5C-8603-55E407B4318E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E95BBBCC-BDF7-4D5C-8603-55E407B4318E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
