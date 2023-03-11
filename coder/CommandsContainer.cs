@@ -29,7 +29,7 @@ public static class CommandsContainer
 
             if (command is null)
             {
-                Console.WriteLine("Неизвестная комманда");
+                Console.WriteLine("Неизвестная команда");
                 continue;
             }
 
@@ -40,13 +40,13 @@ public static class CommandsContainer
 
     private static void PrintHelpPage()
     {
-        Console.WriteLine("Список доступные комманд:");
+        Console.WriteLine("Список доступные команд:");
 
         foreach (ICommand command in Commands)
         {
             Console.WriteLine($"{command.Signature} -- {command.Description}");
         }
 
-        Console.WriteLine("help -- Вывести список всех доступных комманд");
+        Console.WriteLine("help -- Вывести список всех доступных команд");
     }
 }

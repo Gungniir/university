@@ -23,6 +23,10 @@ market.Things.AddRange(new List<IThing>
     new Notebook(),
 });
 Cart<IFood> cart = new();
+Cart<ISnacks> snacksCart = new();
+Cart<IHealthyFood> healthyCart = new();
+Cart<ISemiFinishedFood> semiFinishedCart = new();
+
 #endregion
 
 #region Вывод доступных категорий
@@ -195,7 +199,7 @@ while (true)
 {
     Console.Write("Название товара (\\q для выхода): ");
     var name = Console.ReadLine()!;
-    
+
     if (name == "\\q") break;
 
     IFood food;
@@ -231,10 +235,24 @@ while (true)
         continue;
     }
 
-    cart.Foodstuffs.Add(food);
+    switch (category)
+    {
+        case 1:
+            cart.Foodstuffs.Add(food);
+            break;
+        case 2:
+            snacksCart.Foodstuffs.Add((ISnacks) food);
+            break;
+        case 3:
+            healthyCart.Foodstuffs.Add((IHealthyFood) food);
+            break;
+        case 4:
+            semiFinishedCart.Foodstuffs.Add((ISemiFinishedFood) food);
+            break;
+    }
 }
 
-while (!cart.Isbalanced())
+while (category == 1 && !cart.Isbalanced() || category == 2 && !snacksCart.Isbalanced() || category == 3 && !healthyCart.Isbalanced() || category == 4 && !semiFinishedCart.Isbalanced())
 {
     Console.WriteLine("Ваша корзина не сбалансирована по белкам, жирам и углеводам");
     Console.Write("Сбалансировать('+' - да, '-' - нет): ");
@@ -243,21 +261,22 @@ while (!cart.Isbalanced())
     if (sign == "-")
     {
         break;
-    } 
-    else if (sign == "+")
+    }
+
+    if (sign == "+")
     {
         try
         {
             switch (category)
             {
                 case 2:
-                    cart.CartBalansing(market.Things.Where(thing => thing is ISnacks).Cast<IFood>().ToList());
+                    snacksCart.CartBalansing(market.Things.Where(thing => thing is ISnacks).Cast<ISnacks>().ToList());
                     break;
                 case 3:
-                    cart.CartBalansing(market.Things.Where(thing => thing is IHealthyFood).Cast<IFood>().ToList());
+                    healthyCart.CartBalansing(market.Things.Where(thing => thing is IHealthyFood).Cast<IHealthyFood>().ToList());
                     break;
                 case 4:
-                    cart.CartBalansing(market.Things.Where(thing => thing is ISemiFinishedFood).Cast<IFood>().ToList());
+                    semiFinishedCart.CartBalansing(market.Things.Where(thing => thing is ISemiFinishedFood).Cast<ISemiFinishedFood>().ToList());
                     break;
                 default:
                     cart.CartBalansing(market.Things.Where(thing => thing is IFood).Cast<IFood>().ToList());
@@ -314,7 +333,16 @@ table.Rows.Add(new Row
         },
     }
 });
-foreach (var thing in cart.Foodstuffs)
+
+List<IFood> list = category switch
+{
+    1 => cart.Foodstuffs,
+    2 => snacksCart.Foodstuffs.Cast<IFood>().ToList(),
+    3 => healthyCart.Foodstuffs.Cast<IFood>().ToList(),
+    _ => semiFinishedCart.Foodstuffs.Cast<IFood>().ToList()
+};
+
+foreach (var thing in list)
 {
     table.Rows.Add(new Row
     {
