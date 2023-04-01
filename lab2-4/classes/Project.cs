@@ -6,5 +6,8 @@ namespace lab2_4.classes;
 public class Project
 {
     public string Name { get; set; } = "";
+    public string Description { get; set; } = "";
+    [NotPrintable]
+    public string Secret { get; set; } = "";
     public int StudentId = 0;
 }

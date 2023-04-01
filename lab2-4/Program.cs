@@ -40,11 +40,15 @@ List<Project> projects = new()
     new()
     {
         Name = "Покорение ИКИТа",
+        Description = "Нужно доучиться хотя бы 4 года",
+        Secret = "Нужно сдать все экзамены",
         StudentId = 1
     },
     new()
     {
         Name = "Странное что-то",
+        Description = "Нужно сделать что-то странное",
+        Secret = "Нужно сделать что-то странное",
         StudentId = 3
     }
 };

@@ -35,13 +35,14 @@ public static class ConsoleReporting
                 continue;
             }
 
-            if (member is FieldInfo f)
+            switch (member)
             {
-                fields.Add(f);
-            }
-            else if (member is PropertyInfo {CanRead: true} p)
-            {
-                props.Add(p);
+                case FieldInfo f:
+                    fields.Add(f);
+                    break;
+                case PropertyInfo {CanRead: true} p:
+                    props.Add(p);
+                    break;
             }
         }
 
@@ -67,12 +68,12 @@ public static class ConsoleReporting
         {
             foreach (var prop in props)
             {
-                Console.Write($"{prop.Name}: {prop.GetValue(obj)} |");
+                Console.Write($"{prop.Name}: {prop.GetValue(obj)} | ");
             }
 
             foreach (var field in fields)
             {
-                Console.Write($"{field.Name}: {field.GetValue(obj)} |");
+                Console.Write($"{field.Name}: {field.GetValue(obj)} | ");
             }
 
             Console.WriteLine();
